@@ -1,0 +1,33 @@
+name: Feature proposal
+description: Propose a capability, adapter, experiment, or benchmark
+title: "[Proposal]: "
+labels: ["proposal"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What concrete problem should DreamNet solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed approach
+      description: Explain interfaces, evaluation method, and alternatives considered.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Validation plan
+      description: How will this be tested on held-out cases without label leakage?
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety impact
+      description: Does this add commands, credentials, network load, or write authority?
+    validations:
+      required: true

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dreamnet-rsi"
+version = "0.1.0"
+description = "A clean-room Dream-RSI reproduction for self-improving network troubleshooting"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+authors = [{name = "vExpertAI"}]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/eduardd76/DreamNet"
+Repository = "https://github.com/eduardd76/DreamNet"
+Issues = "https://github.com/eduardd76/DreamNet/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+dreamnet = "dreamnet.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

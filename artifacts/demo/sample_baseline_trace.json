@@ -1,0 +1,276 @@
+[
+  {
+    "round": 1,
+    "nodes": [
+      {
+        "node_id": "n001",
+        "parent_id": "root",
+        "branch": "transport",
+        "depth": 1,
+        "tool": "show_interface",
+        "observation": "Physical state is down",
+        "hypothesis": "Evidence supports interface down",
+        "diagnosis": null,
+        "score": 0.48,
+        "cost": 1.0,
+        "latency_ms": 168
+      }
+    ]
+  },
+  {
+    "round": 2,
+    "nodes": [
+      {
+        "node_id": "n002",
+        "parent_id": "root",
+        "branch": "policy",
+        "depth": 1,
+        "tool": "show_routes",
+        "observation": "Policy permits sampled routes",
+        "hypothesis": "No decisive evidence in policy branch",
+        "diagnosis": null,
+        "score": 0.1,
+        "cost": 1.0,
+        "latency_ms": 117
+      },
+      {
+        "node_id": "n003",
+        "parent_id": "n001",
+        "branch": "transport",
+        "depth": 2,
+        "tool": "check_optics",
+        "observation": "No receive light on peer-facing optic",
+        "hypothesis": "Evidence supports interface down",
+        "diagnosis": null,
+        "score": 0.78,
+        "cost": 1.0,
+        "latency_ms": 203
+      }
+    ]
+  },
+  {
+    "round": 3,
+    "nodes": [
+      {
+        "node_id": "n004",
+        "parent_id": "root",
+        "branch": "platform",
+        "depth": 1,
+        "tool": "show_processes",
+        "observation": "Processes are healthy",
+        "hypothesis": "No decisive evidence in platform branch",
+        "diagnosis": null,
+        "score": 0.1,
+        "cost": 1.0,
+        "latency_ms": 151
+      },
+      {
+        "node_id": "n005",
+        "parent_id": "n003",
+        "branch": "transport",
+        "depth": 3,
+        "tool": "validate_link",
+        "observation": "Interface failure proven",
+        "hypothesis": "Evidence supports interface down",
+        "diagnosis": "interface_down",
+        "score": 1.0,
+        "cost": 1.0,
+        "latency_ms": 238
+      },
+      {
+        "node_id": "n006",
+        "parent_id": "n002",
+        "branch": "policy",
+        "depth": 2,
+        "tool": "trace_policy",
+        "observation": "No deny match",
+        "hypothesis": "No decisive evidence in policy branch",
+        "diagnosis": null,
+        "score": 0.16,
+        "cost": 1.0,
+        "latency_ms": 152
+      }
+    ]
+  },
+  {
+    "round": 4,
+    "nodes": [
+      {
+        "node_id": "n007",
+        "parent_id": "root",
+        "branch": "routing",
+        "depth": 1,
+        "tool": "show_rib",
+        "observation": "RIB state is consistent",
+        "hypothesis": "No decisive evidence in routing branch",
+        "diagnosis": null,
+        "score": 0.1,
+        "cost": 1.0,
+        "latency_ms": 134
+      },
+      {
+        "node_id": "n008",
+        "parent_id": "n006",
+        "branch": "policy",
+        "depth": 3,
+        "tool": "validate_intent",
+        "observation": "Policy branch cleared",
+        "hypothesis": "No decisive evidence in policy branch",
+        "diagnosis": null,
+        "score": 0.2,
+        "cost": 1.0,
+        "latency_ms": 187
+      },
+      {
+        "node_id": "n009",
+        "parent_id": "n004",
+        "branch": "platform",
+        "depth": 2,
+        "tool": "show_resource_state",
+        "observation": "Resources are normal",
+        "hypothesis": "No decisive evidence in platform branch",
+        "diagnosis": null,
+        "score": 0.16,
+        "cost": 1.0,
+        "latency_ms": 186
+      }
+    ]
+  },
+  {
+    "round": 5,
+    "nodes": [
+      {
+        "node_id": "n010",
+        "parent_id": "root",
+        "branch": "changes",
+        "depth": 1,
+        "tool": "query_change_log",
+        "observation": "No correlated recent change",
+        "hypothesis": "No decisive evidence in changes branch",
+        "diagnosis": null,
+        "score": 0.1,
+        "cost": 1.0,
+        "latency_ms": 134
+      },
+      {
+        "node_id": "n011",
+        "parent_id": "n009",
+        "branch": "platform",
+        "depth": 3,
+        "tool": "validate_platform_config",
+        "observation": "Platform branch cleared",
+        "hypothesis": "No decisive evidence in platform branch",
+        "diagnosis": null,
+        "score": 0.2,
+        "cost": 1.0,
+        "latency_ms": 221
+      },
+      {
+        "node_id": "n012",
+        "parent_id": "n007",
+        "branch": "routing",
+        "depth": 2,
+        "tool": "show_fib",
+        "observation": "Next hops resolve",
+        "hypothesis": "No decisive evidence in routing branch",
+        "diagnosis": null,
+        "score": 0.16,
+        "cost": 1.0,
+        "latency_ms": 169
+      }
+    ]
+  },
+  {
+    "round": 6,
+    "nodes": [
+      {
+        "node_id": "n013",
+        "parent_id": "root",
+        "branch": "session",
+        "depth": 1,
+        "tool": "show_neighbors",
+        "observation": "Session parameters appear normal",
+        "hypothesis": "No decisive evidence in session branch",
+        "diagnosis": null,
+        "score": 0.1,
+        "cost": 1.0,
+        "latency_ms": 134
+      },
+      {
+        "node_id": "n014",
+        "parent_id": "n012",
+        "branch": "routing",
+        "depth": 3,
+        "tool": "validate_reachability",
+        "observation": "Routing branch cleared",
+        "hypothesis": "No decisive evidence in routing branch",
+        "diagnosis": null,
+        "score": 0.2,
+        "cost": 1.0,
+        "latency_ms": 204
+      },
+      {
+        "node_id": "n015",
+        "parent_id": "n010",
+        "branch": "changes",
+        "depth": 2,
+        "tool": "diff_config",
+        "observation": "Diff is unrelated",
+        "hypothesis": "No decisive evidence in changes branch",
+        "diagnosis": null,
+        "score": 0.16,
+        "cost": 1.0,
+        "latency_ms": 169
+      }
+    ]
+  },
+  {
+    "round": 7,
+    "nodes": [
+      {
+        "node_id": "n016",
+        "parent_id": "n015",
+        "branch": "changes",
+        "depth": 3,
+        "tool": "correlate_timeline",
+        "observation": "Change branch cleared",
+        "hypothesis": "No decisive evidence in changes branch",
+        "diagnosis": null,
+        "score": 0.2,
+        "cost": 1.0,
+        "latency_ms": 204
+      },
+      {
+        "node_id": "n017",
+        "parent_id": "n013",
+        "branch": "session",
+        "depth": 2,
+        "tool": "inspect_protocol_logs",
+        "observation": "No protocol error",
+        "hypothesis": "No decisive evidence in session branch",
+        "diagnosis": null,
+        "score": 0.16,
+        "cost": 1.0,
+        "latency_ms": 169
+      }
+    ]
+  },
+  {
+    "round": 8,
+    "nodes": [
+      {
+        "node_id": "n018",
+        "parent_id": "n017",
+        "branch": "session",
+        "depth": 3,
+        "tool": "compare_peer_config",
+        "observation": "Session branch cleared",
+        "hypothesis": "No decisive evidence in session branch",
+        "diagnosis": null,
+        "score": 0.2,
+        "cost": 1.0,
+        "latency_ms": 204
+      }
+    ]
+  }
+]

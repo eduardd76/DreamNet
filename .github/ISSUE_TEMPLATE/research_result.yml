@@ -1,0 +1,25 @@
+name: Reproduction or research result
+description: Share an independently reproduced experiment
+title: "[Result]: "
+labels: ["research"]
+body:
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Hypothesis and setup
+      description: State topology, incidents, policy, evaluator, split, seed, and objective.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Results
+      description: Report accuracy, quality, calls, rounds, parallelism, and raw artifact links.
+    validations:
+      required: true
+  - type: textarea
+    id: limitations
+    attributes:
+      label: Limitations and possible leakage
+    validations:
+      required: true

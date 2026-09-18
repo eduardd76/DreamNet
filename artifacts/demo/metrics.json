@@ -1,0 +1,38 @@
+{
+  "replay_train": {
+    "baseline": {
+      "objective": 0.5725,
+      "accuracy": 1,
+      "quality": 1.0,
+      "requests": 18,
+      "rounds": 8,
+      "parallelism": 2.25
+    },
+    "learned": {
+      "objective": 0.866547619047619,
+      "accuracy": 1,
+      "quality": 1.0,
+      "requests": 5.738095238095238,
+      "rounds": 5.738095238095238,
+      "parallelism": 1.0
+    }
+  },
+  "online_holdout": {
+    "baseline": {
+      "objective": 0.5725,
+      "accuracy": 1,
+      "quality": 1.0,
+      "requests": 18,
+      "rounds": 8,
+      "parallelism": 2.25
+    },
+    "learned": {
+      "objective": 0.8629761904761905,
+      "accuracy": 1,
+      "quality": 1.0,
+      "requests": 5.880952380952381,
+      "rounds": 5.880952380952381,
+      "parallelism": 1.0
+    }
+  }
+}

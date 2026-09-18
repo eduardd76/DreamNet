@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use DreamNet, cite this software and the original Dream-RSI paper."
+title: "DreamNet: Replay-Based Policy Improvement for Network Troubleshooting"
+type: software
+authors:
+  - family-names: "Dulharu"
+    given-names: "Eduard"
+version: 0.1.0
+date-released: 2026-09-18
+license: Apache-2.0
+repository-code: "https://github.com/eduardd76/DreamNet"
+url: "https://github.com/eduardd76/DreamNet"
+keywords:
+  - network troubleshooting
+  - BGP
+  - OSPF
+  - replay simulation
+  - agent orchestration
+references:
+  - type: article
+    title: "Dream-RSI: Recursive Self-Improvement through Evolving Worlds"
+    authors:
+      - family-names: "Zheng"
+        given-names: "Tong"
+      - family-names: "Wu"
+        given-names: "Xidong"
+      - family-names: "Zhang"
+        given-names: "Zheng"
+    year: 2026
+    url: "https://arxiv.org/abs/2609.14858"

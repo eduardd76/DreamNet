@@ -1,0 +1,56 @@
+[
+  {
+    "round": 1,
+    "nodes": [
+      {
+        "node_id": "n001",
+        "parent_id": "root",
+        "branch": "transport",
+        "depth": 1,
+        "tool": "show_interface",
+        "observation": "Physical state is down",
+        "hypothesis": "Evidence supports interface down",
+        "diagnosis": null,
+        "score": 0.48,
+        "cost": 1.0,
+        "latency_ms": 168
+      }
+    ]
+  },
+  {
+    "round": 2,
+    "nodes": [
+      {
+        "node_id": "n002",
+        "parent_id": "n001",
+        "branch": "transport",
+        "depth": 2,
+        "tool": "check_optics",
+        "observation": "No receive light on peer-facing optic",
+        "hypothesis": "Evidence supports interface down",
+        "diagnosis": null,
+        "score": 0.78,
+        "cost": 1.0,
+        "latency_ms": 203
+      }
+    ]
+  },
+  {
+    "round": 3,
+    "nodes": [
+      {
+        "node_id": "n003",
+        "parent_id": "n002",
+        "branch": "transport",
+        "depth": 3,
+        "tool": "validate_link",
+        "observation": "Interface failure proven",
+        "hypothesis": "Evidence supports interface down",
+        "diagnosis": "interface_down",
+        "score": 1.0,
+        "cost": 1.0,
+        "latency_ms": 238
+      }
+    ]
+  }
+]

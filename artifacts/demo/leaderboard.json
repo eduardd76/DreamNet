@@ -1,0 +1,402 @@
+[
+  {
+    "policy": "dream_candidate_0072",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0117",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0120",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0132",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0155",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0162",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0189",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0202",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0207",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0222",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0224",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0285",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0296",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0299",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0300",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0304",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0342",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0343",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0348",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0352",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0371",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0377",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0408",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0418",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0422",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0431",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0432",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0447",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0448",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0450",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0455",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0467",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0497",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0510",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0518",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0540",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0542",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0549",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0566",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0573",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0578",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0618",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0631",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0634",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0648",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0655",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0660",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0678",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0689",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  },
+  {
+    "policy": "dream_candidate_0690",
+    "objective": 0.866548,
+    "accuracy": 1,
+    "quality": 1.0,
+    "requests": 5.738095,
+    "rounds": 5.738095
+  }
+]
