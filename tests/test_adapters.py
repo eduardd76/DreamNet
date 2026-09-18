@@ -21,3 +21,11 @@ def test_containerlab_adapter_rejects_non_allowlisted_tools():
 def test_containerlab_adapter_rejects_unsafe_device_name():
     with pytest.raises(ValueError, match="device name"):
         ContainerlabFRRAdapter().execute("show_rib", "r1;whoami")
+
+
+def test_containerlab_adapter_validates_dynamic_parameters():
+    adapter = ContainerlabFRRAdapter()
+    with pytest.raises(ValueError, match="interface"):
+        adapter._build_tool_command("show_interface", {"interface": "eth1;id"})
+    with pytest.raises(ValueError):
+        adapter._build_tool_command("ping_peer", {"peer_ip": "10.0.0.1;id"})

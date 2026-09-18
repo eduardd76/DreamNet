@@ -1,4 +1,4 @@
-.PHONY: install test lint demo clean
+.PHONY: install test lint demo bgp-demo clean
 
 install:
 	python -m venv .venv
@@ -12,6 +12,9 @@ lint:
 
 demo:
 	.venv/bin/dreamnet demo --output artifacts/demo --train 84 --test 42 --candidates 800
+
+bgp-demo:
+	.venv/bin/dreamnet bgp-demo --fixtures examples/fixtures --output artifacts/bgp-demo
 
 clean:
 	find . -type d -name __pycache__ -prune -exec rm -r {} +

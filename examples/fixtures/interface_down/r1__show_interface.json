@@ -1,0 +1,7 @@
+{
+  "command": ["ip", "-j", "link", "show", "dev", "eth1"],
+  "stdout": "[{\"ifname\":\"eth1\",\"operstate\":\"DOWN\"}]",
+  "stderr": "",
+  "returncode": 0,
+  "latency_ms": 19
+}

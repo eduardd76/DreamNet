@@ -14,10 +14,7 @@ def evaluate_policy(
     beta_cost: float = 0.025,
     beta_parallel: float = 0.01,
 ) -> tuple[float, list[Score]]:
-    scores = [
-        score_result(replay_tree(tree, config), beta_cost, beta_parallel)
-        for tree in trees
-    ]
+    scores = [score_result(replay_tree(tree, config), beta_cost, beta_parallel) for tree in trees]
     return mean(score.value for score in scores), scores
 
 
@@ -54,9 +51,7 @@ def optimize_policy(
     rng = random.Random(seed)
     best = initial
     best_value, best_scores = evaluate_policy(best, trees, beta_cost, beta_parallel)
-    leaderboard: list[dict[str, float | str | int]] = [
-        _summary(best, best_value, best_scores)
-    ]
+    leaderboard: list[dict[str, float | str | int]] = [_summary(best, best_value, best_scores)]
 
     elites: list[PolicyConfig] = [initial]
     for index in range(candidates):
@@ -73,7 +68,9 @@ def optimize_policy(
     return best, leaderboard
 
 
-def _summary(config: PolicyConfig, value: float, scores: list[Score]) -> dict[str, float | str | int]:
+def _summary(
+    config: PolicyConfig, value: float, scores: list[Score]
+) -> dict[str, float | str | int]:
     return {
         "policy": config.name,
         "objective": round(value, 6),

@@ -39,7 +39,8 @@ class NetworkEnvironment:
 
     def register(self, incident: Incident) -> None:
         match = next(
-            f for f in FAULTS
+            f
+            for f in FAULTS
             if f.protocol == incident.protocol and f.root_cause == incident.root_cause
         )
         self._fault_by_incident[incident.incident_id] = match
@@ -92,10 +93,22 @@ class NetworkEnvironment:
     def _negative_observation(branch: str, depth: int) -> str:
         messages = {
             "transport": ("Peer is reachable", "Path is stable", "No transport fault found"),
-            "session": ("Session parameters appear normal", "No protocol error", "Session branch cleared"),
+            "session": (
+                "Session parameters appear normal",
+                "No protocol error",
+                "Session branch cleared",
+            ),
             "policy": ("Policy permits sampled routes", "No deny match", "Policy branch cleared"),
             "routing": ("RIB state is consistent", "Next hops resolve", "Routing branch cleared"),
-            "changes": ("No correlated recent change", "Diff is unrelated", "Change branch cleared"),
-            "platform": ("Processes are healthy", "Resources are normal", "Platform branch cleared"),
+            "changes": (
+                "No correlated recent change",
+                "Diff is unrelated",
+                "Change branch cleared",
+            ),
+            "platform": (
+                "Processes are healthy",
+                "Resources are normal",
+                "Platform branch cleared",
+            ),
         }
         return messages[branch][depth - 1]

@@ -44,11 +44,11 @@ This report compares the fixed exploration policy with the replay-optimized poli
 
 | Metric | Fixed policy | Learned policy |
 |---|---:|---:|
-| Diagnostic accuracy | {online_baseline['accuracy']:.1%} | {online_learned['accuracy']:.1%} |
-| Mean diagnostic quality | {online_baseline['quality']:.3f} | {online_learned['quality']:.3f} |
-| Mean tool calls | {online_baseline['requests']:.2f} | {online_learned['requests']:.2f} |
-| Mean decision rounds | {online_baseline['rounds']:.2f} | {online_learned['rounds']:.2f} |
-| Mean objective | {online_baseline['objective']:.3f} | {online_learned['objective']:.3f} |
+| Diagnostic accuracy | {online_baseline["accuracy"]:.1%} | {online_learned["accuracy"]:.1%} |
+| Mean diagnostic quality | {online_baseline["quality"]:.3f} | {online_learned["quality"]:.3f} |
+| Mean tool calls | {online_baseline["requests"]:.2f} | {online_learned["requests"]:.2f} |
+| Mean decision rounds | {online_baseline["rounds"]:.2f} | {online_learned["rounds"]:.2f} |
+| Mean objective | {online_baseline["objective"]:.3f} | {online_learned["objective"]:.3f} |
 
 Tool-call reduction: **{request_reduction:.1f}%**.
 
@@ -56,9 +56,9 @@ Tool-call reduction: **{request_reduction:.1f}%**.
 
 | Metric | Fixed policy | Learned policy |
 |---|---:|---:|
-| Diagnostic accuracy | {replay_baseline['accuracy']:.1%} | {replay_learned['accuracy']:.1%} |
-| Mean tool calls | {replay_baseline['requests']:.2f} | {replay_learned['requests']:.2f} |
-| Mean objective | {replay_baseline['objective']:.3f} | {replay_learned['objective']:.3f} |
+| Diagnostic accuracy | {replay_baseline["accuracy"]:.1%} | {replay_learned["accuracy"]:.1%} |
+| Mean tool calls | {replay_baseline["requests"]:.2f} | {replay_learned["requests"]:.2f} |
+| Mean objective | {replay_baseline["objective"]:.3f} | {replay_learned["objective"]:.3f} |
 
 ## Selected policy
 
@@ -81,8 +81,10 @@ interfaces unchanged.
 def result_trace(result: RunResult) -> list[dict[str, Any]]:
     trace: list[dict[str, Any]] = []
     for round_index, node_ids in enumerate(result.tree.rounds, start=1):
-        trace.append({
-            "round": round_index,
-            "nodes": [result.tree.nodes[node_id].to_dict() for node_id in node_ids],
-        })
+        trace.append(
+            {
+                "round": round_index,
+                "nodes": [result.tree.nodes[node_id].to_dict() for node_id in node_ids],
+            }
+        )
     return trace

@@ -1,0 +1,7 @@
+{
+  "command": ["vtysh", "-c", "show running-config"],
+  "stdout": "router bgp 65001\n neighbor 10.0.12.2 remote-as 65002\n neighbor 10.0.12.2 shutdown\n",
+  "stderr": "",
+  "returncode": 0,
+  "latency_ms": 91
+}

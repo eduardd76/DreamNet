@@ -1,0 +1,7 @@
+{
+  "command": ["vtysh", "-c", "show running-config"],
+  "stdout": "router bgp 65001\n bgp router-id 1.1.1.1\n neighbor 10.0.12.2 remote-as 65102\n",
+  "stderr": "",
+  "returncode": 0,
+  "latency_ms": 95
+}

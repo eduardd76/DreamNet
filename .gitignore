@@ -8,3 +8,6 @@ build/
 *.egg-info/
 artifacts/demo/trees/
 artifacts/parallel*/
+artifacts/bgp-live/
+artifacts/bgp-demo/
+artifacts/bgp-smoke/

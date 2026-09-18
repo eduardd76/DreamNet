@@ -4,10 +4,20 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-experimental-orange.svg)](#project-status)
 
-DreamNet is a clean-room, runnable reproduction of the core idea in
-[Dream-RSI](https://arxiv.org/abs/2609.14858), applied to BGP and OSPF troubleshooting.
-It learns **how to investigate** from recorded discovery trees while keeping the incident
-generator, tool behavior, evaluator, and underlying troubleshooting logic fixed.
+DreamNet is an **adaptive, evidence-driven troubleshooting procedure engine for network
+operations**. It turns static troubleshooting playbooks into executable procedural graphs and uses
+validated investigation experience to choose more efficient paths through them.
+
+The project combines three deliberately separate graphs:
+
+- **Knowledge Graph:** what exists and how it is related—devices, peers, interfaces and policies.
+- **Procedural Graph:** what actions are allowed and what outcome leads to each next step.
+- **Experience Graph:** what actually happened—executed step, context, evidence, outcome, cost,
+  latency and validated diagnosis.
+
+Its experience-guided navigation is inspired by the historical replay idea in
+[Dream-RSI](https://arxiv.org/abs/2609.14858), but DreamNet is an independent network-operations
+implementation.
 
 > The upstream Dream-RSI repository did not contain the announced code or reproduction scripts
 > when this project was created. DreamNet is independent and is not an official Google/DeepMind
@@ -33,15 +43,17 @@ security issues through [SECURITY.md](SECURITY.md), not a public issue.
 
 ## What works now
 
-- Generates reproducible BGP/OSPF incidents across 14 fault classes.
-- Runs an online fixed-policy exploration and records full discovery trees.
-- Replays alternative policies without re-running tools or inventing outcomes.
-- Searches executable orchestration-policy parameters with an evolutionary optimizer.
-- Selects a policy only when it is no worse than the incumbent on the replay objective.
-- Deploys the learned policy against unseen online incidents.
-- Reports accuracy, diagnostic quality, tool calls, rounds, parallelism, and objective value.
-- Provides read-only adapters for recorded fixtures and FRR nodes in Containerlab.
-- Includes tests, linting, CI, JSON artifacts, and a human-readable evaluation report.
+- An executable BGP procedure covers session-down and established-but-route-missing paths.
+- Deterministic evidence evaluators interpret FRR JSON/text rather than asking an LLM to self-score.
+- A minimal Knowledge Graph models three routers, peer sessions, interfaces and export policy.
+- An Experience Graph records each action and links incident, step, device, evidence and diagnosis.
+- Raw tool output is represented by a SHA-256 digest; normalized evidence is stored for audit.
+- Experience-guided navigation learns whether firewall or peer-configuration inspection has
+  historically provided more diagnostic value in the current context.
+- A three-router FRR/Containerlab topology includes controlled interface-down, ASN-mismatch,
+  neighbor-shutdown and route-map-filter scenarios.
+- The same engine runs against deterministic fixtures or a live local Containerlab.
+- The original synthetic Dream-RSI-style replay experiment remains available for research.
 
 It intentionally does **not** make production changes. The FRR adapter allow-lists read-only
 commands, and the simulation has no production action interface.
@@ -53,7 +65,7 @@ Python 3.11+ is required.
 ```bash
 make install
 make test
-make demo
+make bgp-demo
 ```
 
 Or without Make:
@@ -61,40 +73,53 @@ Or without Make:
 ```bash
 python -m venv .venv
 .venv/bin/pip install -e '.[dev]'
-.venv/bin/dreamnet demo \
-  --output artifacts/demo \
-  --train 84 \
-  --test 42 \
-  --candidates 800 \
-  --seed 7
+.venv/bin/dreamnet bgp-demo \
+  --fixtures examples/fixtures \
+  --output artifacts/bgp-demo
 ```
 
-Open `artifacts/demo/report.md` after the run. The default seeded experiment currently preserves
-100% diagnostic accuracy on 42 held-out incidents and reduces mean tool calls from 18.0 to 5.88.
-That is a simulator result, not a production-performance claim.
+The bundled four-scenario fixture run produces 100% deterministic diagnostic accuracy and reduces
+mean tool calls from 3.75 to 3.25 after loading baseline experience. This only validates the engine;
+the fixtures are not a production benchmark and were not captured live by this repository's CI.
 
 ## The complete loop
 
 ```mermaid
 flowchart TD
-    A[Online incidents] --> B[Fixed exploration policy]
-    B --> C[Discovery trees]
-    C --> D[Replay simulator pool]
-    D --> E[Candidate policy search]
-    E --> F[Replay objective]
-    F --> G[Selected policy]
-    G --> H[Unseen online incidents]
-    H --> I[Held-out evaluation]
-    G -. next iteration .-> B
+    A[Alert and symptoms] --> B[Knowledge Graph context]
+    B --> C[Procedural Graph]
+    C --> D[Experience-guided navigator]
+    D --> E[Read-only FRR tools]
+    E --> F[Deterministic evidence evaluator]
+    F --> G[Diagnosis or escalation]
+    F --> H[Experience Graph]
+    H --> D
 ```
 
-Each online or replay decision uses the same interface. Given the root and currently visible leaves,
-the policy returns up to `W` nodes to expand. Online expansion executes the frozen environment and
-creates a child. Replay expansion reveals the next recorded child, never a counterfactual outcome.
+The Procedural Graph is the approved action space. DreamNet may change which eligible diagnostic
+step is tried first, but it cannot invent an unapproved command or transition. When evidence is
+insufficient, the graph ends in escalation rather than manufacturing a diagnosis.
 
-## Objective
+## What is an Experience Graph?
 
-DreamNet implements the paper's quality/cost/parallelism structure:
+It is a property graph of executed investigations, not a collection of prose memories. For example:
+
+```text
+Incident-147 --HAS_EXECUTION--> Execution-4
+Execution-4 --USED_STEP-------> Compare-peer-configuration
+Execution-4 --TARGETED--------> r1
+Execution-4 --PRODUCED--------> Evidence-4
+Evidence-4  --SUPPORTS--------> ASN-mismatch
+```
+
+The execution vertex carries context, tool, latency, cost and whether the step resolved the incident.
+DreamNet aggregates these validated histories to rank eligible next steps. The Knowledge Graph says
+that `r1` should peer with `r2` using AS 65002; the Experience Graph says that checking peer
+configuration has historically been more useful than checking the firewall under similar evidence.
+
+## Legacy replay experiment
+
+The original `dreamnet demo` command implements the paper's quality/cost/parallelism structure:
 
 ```text
 V = best_diagnostic_quality
@@ -119,7 +144,14 @@ diagnosis would make the learning loop easy to game.
 
 ## Fault coverage
 
-The synthetic environment covers:
+The executable BGP procedure currently covers:
+
+| State | Validated outcomes |
+|---|---|
+| Session not established | interface down, peer unreachable, TCP/179 blocked, ASN mismatch, neighbor shutdown, escalation |
+| Session established but prefix missing | outbound route-map filter, escalation |
+
+The separate legacy synthetic environment covers:
 
 | Protocol | Faults |
 |---|---|
@@ -131,64 +163,56 @@ changes, and platform. A branch contains up to three increasingly specific tool/
 
 ## Artifacts
 
-A demo run writes:
+A BGP procedure run writes:
 
 ```text
-artifacts/demo/
-├── learned_policy.json
-├── leaderboard.json
-├── metrics.json
-├── report.md
-├── sample_baseline_trace.json
-├── sample_learned_trace.json
-└── trees/
-    └── train-*.json
-```
-
-Replay any saved tree against the selected policy:
-
-```bash
-.venv/bin/dreamnet replay \
-  artifacts/demo/trees/train-000.json \
-  artifacts/demo/learned_policy.json
+artifacts/bgp-demo/
+├── summary.json
+├── knowledge_graph.json
+├── procedural_graph.json
+└── experience_graph.json
 ```
 
 ## FRR and Containerlab integration
 
-`ContainerlabFRRAdapter` executes only allow-listed read commands via `docker exec`. Its output must
-be normalized into a DreamNet observation and scored by a separate deterministic evaluator before it
-is appended to a discovery tree.
+`ContainerlabFRRAdapter` executes only allow-listed read commands via `docker exec`. The deterministic
+BGP evaluator normalizes the returned evidence before the action is written to the Experience Graph.
 
 The production integration boundary is deliberately narrow:
 
 ```python
 from dreamnet.adapters import ContainerlabFRRAdapter
 
-adapter = ContainerlabFRRAdapter(lab_prefix="clab-dreamnet")
+adapter = ContainerlabFRRAdapter(lab_prefix="clab-dreamnet-bgp")
 result = adapter.execute("show_bgp_summary", "r1")
 print(result.stdout)
 ```
 
-See [docs/production-extension.md](docs/production-extension.md) for the phased path from the current
-simulator to FRR, MCP tools, and vExpertAI's deterministic Network Reasoning Engine.
+See [lab/bgp/README.md](lab/bgp/README.md) to deploy the FRR topology, inject a controlled fault and
+run `dreamnet bgp-run --live`. Live execution requires Docker and Containerlab; it is not exercised by
+the unprivileged unit-test environment. The staged expansion plan is in
+[docs/roadmap.md](docs/roadmap.md).
 
 ## Scientific honesty and limitations
 
-1. The policy sees the evaluator's node score, as in the paper. In production that score must come
-   from a trustworthy evidence function, not incident ground truth.
-2. Replay covers only recorded paths. It cannot predict unseen tool outcomes and is not a digital twin.
-3. The synthetic holdout uses unseen incidents but the same fault distribution. Cross-topology,
-   cross-vendor, and distribution-shift tests are still required.
-4. The evolutionary search replaces the paper's LLM policy-development agent. This makes the example
-   dependency-free and reproducible but explores a smaller policy space.
-5. A lower tool-call count does not necessarily mean lower MTTR. Worker count, tool latency, rate
-   limits, and device impact need separate optimization.
+1. The bundled fixtures mirror expected FRR output but are not evidence that the live lab succeeds on
+   every host, image or Containerlab release.
+2. Four fault scenarios are far too small to establish generalization.
+3. The export-policy evaluator proves that a deny route-map is attached; future versions must prove
+   that the specific prefix matches the complete policy chain.
+4. Experience ranking can amplify biased incident history. Promotion requires held-out topologies,
+   fault families and time periods.
+5. Lower tool-call count does not necessarily mean lower MTTR or lower device impact.
+6. DreamNet is read-only. Remediation belongs behind a separate validation and approval boundary.
 
 ## Project structure
 
 ```text
 src/dreamnet/
 ├── adapters.py       # recorded and read-only FRR tool adapters
+├── graphs.py         # knowledge, procedural and experience graph primitives
+├── bgp_procedure.py  # executable BGP graph, evaluator and navigator
+├── bgp_demo.py       # fixture suite and live Containerlab runner
 ├── catalog.py        # BGP/OSPF fault catalog
 ├── environment.py    # frozen synthetic discovery environment/evaluator
 ├── policy.py         # executable branching, batching, stopping policy

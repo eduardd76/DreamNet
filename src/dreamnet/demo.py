@@ -42,12 +42,8 @@ def run_demo(
     write_json(output_dir / "learned_policy.json", learned.to_dict())
     write_json(output_dir / "leaderboard.json", leaderboard[:50])
 
-    _, baseline_replay_scores = evaluate_policy(
-        baseline, train_trees, beta_cost, beta_parallel
-    )
-    _, learned_replay_scores = evaluate_policy(
-        learned, train_trees, beta_cost, beta_parallel
-    )
+    _, baseline_replay_scores = evaluate_policy(baseline, train_trees, beta_cost, beta_parallel)
+    _, learned_replay_scores = evaluate_policy(learned, train_trees, beta_cost, beta_parallel)
 
     test_env_a = NetworkEnvironment(seed=seed + 100)
     test_incidents_a = test_env_a.generate_incidents(test_count, "test")

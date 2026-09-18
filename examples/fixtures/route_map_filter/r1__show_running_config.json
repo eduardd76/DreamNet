@@ -1,0 +1,7 @@
+{
+  "command": ["vtysh", "-c", "show running-config"],
+  "stdout": "ip prefix-list BLOCK-LOOPBACK seq 5 deny 192.0.2.1/32\nroute-map BLOCK-EXPORT deny 10\n match ip address prefix-list BLOCK-LOOPBACK\nroute-map BLOCK-EXPORT permit 20\nrouter bgp 65001\n neighbor 10.0.12.2 remote-as 65002\n address-family ipv4 unicast\n  neighbor 10.0.12.2 route-map BLOCK-EXPORT out\n exit-address-family\n",
+  "stderr": "",
+  "returncode": 0,
+  "latency_ms": 99
+}

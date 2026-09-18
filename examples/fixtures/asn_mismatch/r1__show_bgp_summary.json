@@ -1,0 +1,7 @@
+{
+  "command": ["vtysh", "-c", "show bgp summary json"],
+  "stdout": "{\"ipv4Unicast\":{\"peers\":{\"10.0.12.2\":{\"state\":\"Active\"}}}}",
+  "stderr": "",
+  "returncode": 0,
+  "latency_ms": 77
+}

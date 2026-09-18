@@ -1,0 +1,7 @@
+{
+  "command": ["iptables", "-S"],
+  "stdout": "-P INPUT ACCEPT\n-P FORWARD ACCEPT\n-P OUTPUT ACCEPT\n",
+  "stderr": "",
+  "returncode": 0,
+  "latency_ms": 21
+}
